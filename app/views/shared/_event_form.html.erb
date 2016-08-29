@@ -1,0 +1,7 @@
+<%= form_for(@event) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.text_area :description, placeholder: "Description" %>
+    <%= f.text_area :location, placeholder: "Location" %>
+  <%= f.submit "Event", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,6 @@
+<ol>
+<% @events.each do |event| %>
+    <li><%= link_to event.description, event_path(event) %>
+    <%= event.location %></li>
+<% end %>
+</ol>
