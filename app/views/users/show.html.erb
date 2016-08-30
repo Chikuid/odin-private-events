@@ -1,5 +1,8 @@
 
 <% provide(:title, @user.name) %>
+<% if logged_in? %>
+  <%= link_to "Create Event",  new_event_path %>
+<% end %>
 <div class="row">
   <aside class="col-md-4">
   </aside>
@@ -10,16 +13,26 @@
         <%= render @events %>
       </ol>
     <% end %>
+    <% if @upcoming_events.any? %>
+      <h3>Upcoming Events (<%= @upcoming_events.count %>)</h3>
+      <ol class="microposts">
+        <%= render @upcoming_events %>
+      </ol>
+    <% end %>
+
+    <% if @prev_events.any? %>
+      <h3>Previous Events (<%= @prev_events.count %>)</h3>
+      <ol class="microposts">
+        <%= render @prev_events %>
+      </ol>
+    <% end %>
   </div>
 </div>
 <% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
+  <div >
+    <aside class="col-md-8">
       <section class="user_info">
         <%= render 'shared/user_info' %>
-      </section>
-      <section class="event_form">
-        <%= render 'shared/event_form' %>
       </section>
     </aside>
   </div>

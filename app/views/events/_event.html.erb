@@ -1,7 +1,6 @@
 
-  <p>Organizer: <%= link_to event.creator.name, event.creator %>  |
-  Description: <%= link_to event.description, event_path(event) %>|
-  Location: <%= event.location %> | Date: Yet to come<br>
+  <p>Event: <%= link_to event.title, event_path(event) %>  |
+  Location: <%= event.location %> | Date: <%= event.date %><br>
    <% if current_user?(event.creator) %>
     <%= link_to "delete", event, method: :delete,
                                 data: { confirm: "You sure?" } %>

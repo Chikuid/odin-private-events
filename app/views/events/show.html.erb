@@ -1,3 +1,14 @@
-<h1><%= @event.description %></h1>
+<h1><%= @event.title %></h1>
 <h4>@ <%= @event.location %></h4>
-<p>by <%= link_to(@event.creator.name , user_path) %></p>
+<h4>Date: <%= @event.date %></h4>
+  <% if current_user.going?(@event) %>
+    <%= render 'cancel'  %>
+  <% else %>
+    <%= render 'attend' %>
+  <% end %>
+<p>by <%= link_to(@event.creator.name , user_path(@event.creator)) %></p>
+<ul><h2>Attendees</h2>
+  <% @attendees.each do |attendee| %>
+    <li><%= link_to attendee.name, user_path(attendee) %></li>
+  <% end %>
+</ul>

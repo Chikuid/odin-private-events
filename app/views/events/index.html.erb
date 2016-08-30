@@ -1,6 +1,21 @@
-<ol>
-<% @events.each do |event| %>
-    <li><%= link_to event.description, event_path(event) %>
-    <%= event.location %></li>
+<% if @events_upcoming.any? %>
+<ol><h2>Upcoming Events<%= "(#{@events_upcoming.count})" %></h2>
+<% @events_upcoming.each do |event| %>
+    <li><%= link_to event.title, event_path(event) %>
+    <%= event.location %> | <%= link_to event.creator.name,
+       user_path(event.creator)  %>
+     | Date: <%= event.date %></li>
 <% end %>
 </ol>
+<% end %>
+
+<% if @events_past.any? %>
+<ol><h2>Past Events<%= "(#{@events_past.count})" %></h2>
+<% @events_past.each do |event| %>
+    <li><%= link_to event.title, event_path(event) %>
+    <%= event.location %> | <%= link_to event.creator.name,
+    user_path(event.creator)  %>
+     | Date: <%= event.date %></li>
+<% end %>
+</ol>
+<% end %>

@@ -7,7 +7,9 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @events ||= @user.events
-    @event = current_user.events.build if logged_in?
+    @upcoming_events = @user.attended_events.upcoming
+    @prev_events = @user.attended_events.past
+
   end
 
   def create
